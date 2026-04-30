@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f5f5;
+}
+
+/* 全体 */
+.container {
+  padding: 10px;
+}
+
+/* タイトル */
+h1 {
+  text-align: center;
+  margin: 5px;
+}
+
+/* セクション */
+.section {
+  margin-bottom: 15px;
+}
+
+.section h2 {
+  margin: 5px;
+}
+
+/* 上：受付中（最大4） */
+#active {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* 下：受付済（最大11） */
+#done {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* カード */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 番号札 */
+.call {
+  font-size: 56px;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+/* 車番（最重要） */
+.number {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* 車種 */
+.type {
+  font-size: 18px;
+}
+
+/* 保管場所 */
+.loc {
+  font-size: 16px;
+  color: gray;
+}
+
+/* 白黒番号札 */
+.white-tag {
+  background: white;
+  color: black;
+  border: 3px solid black;
+}
+
+.black-tag {
+  background: black;
+  color: white;
+}
