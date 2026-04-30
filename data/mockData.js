@@ -1,4 +1,4 @@
-const cars = [
+﻿const cars = [
   {
     call: 89,
     time: "09:30",
@@ -9,7 +9,8 @@ const cars = [
     inbound: true,
     options: ["チャイルドシート"],
     location: "カメP",
-    status: "preparing"
+    status: "preparing",
+    keyObtained: false
   },
   {
     call: 90,
@@ -21,6 +22,7 @@ const cars = [
     inbound: false,
     options: [],
     location: "第0ガレージ",
-    status: "done"
+    status: "done",
+    keyObtained: false
   }
 ];

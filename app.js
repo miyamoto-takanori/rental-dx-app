@@ -1,11 +1,17 @@
-function render() {
+﻿function render() {
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
 
-  cars.forEach(car => {
+  cars.forEach((car, index) => {
     const tr = document.createElement("tr");
+    tr.className = car.keyObtained ? "row-key-obtained" : "";
 
     const tagClass = car.inbound ? "black-tag" : "white-tag";
+    const statusClass = car.status === "preparing" ? "pending" : "received";
+    const statusText = statusLabel(car.status);
+    const infoContent = car.options.length > 0
+      ? car.options.map(option => `<span class="info-tag">${option}</span>`).join("")
+      : '<span class="info-empty">特記事項なし</span>';
 
     tr.innerHTML = `
       <td>
@@ -14,7 +20,7 @@ function render() {
       <td>${car.time}</td>
       <td>
         <div class="class-badge">${car.class}</div>
-        <div class="car-type"><b>${car.carType}</b></div>
+        <div class="car-type">${car.carType}</div>
       </td>
       <td>
         <div class="number-cell">
@@ -23,9 +29,9 @@ function render() {
         </div>
       </td>
       <td>
-        <ul class="info-list">
-          ${car.options.map(option => `<li>${option}</li>`).join("")}
-        </ul>
+        <div class="info-panel">
+          ${infoContent}
+        </div>
       </td>
       <td>
         <div class="location">
@@ -39,9 +45,16 @@ function render() {
         </div>
       </td>
       <td>
-        <div class="status ${car.status}">
-          ${label(car.status)}
+        <div class="status ${statusClass}">
+          ${statusText}
         </div>
+      </td>
+      <td class="action-cell">
+        <label class="key-toggle">
+          <input type="checkbox" ${car.keyObtained ? "checked" : ""} onchange="toggleKey(${index}, this)">
+          <span>鍵取得</span>
+        </label>
+        <button class="delete-button" onclick="deleteRow(${index})">完了削除</button>
       </td>
     `;
 
@@ -51,21 +64,32 @@ function render() {
   updateTime();
 }
 
-function label(status) {
-  if (status === "preparing") return "準備中";
-  if (status === "ready") return "準備完了";
-  return "受付済";
+function statusLabel(status) {
+  return status === "preparing" ? "受付中" : "受付済";
+}
+
+function toggleKey(index, checkbox) {
+  cars[index].keyObtained = checkbox.checked;
+  render();
+}
+
+function deleteRow(index) {
+  const car = cars[index];
+  const confirmText = `${car.carType} ${car.number} の案内が完了したら、この行を削除しますか？`;
+  if (!confirm(confirmText)) return;
+  cars.splice(index, 1);
+  render();
 }
 
 function updateTime() {
   const now = new Date();
 
   document.getElementById("time").innerText =
-    now.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" });
+    now.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
   document.getElementById("date").innerText =
     now.toLocaleDateString("ja-JP", { month: "numeric", day: "numeric", weekday: "short" });
 }
 
 render();
-setInterval(updateTime, 60000);
+setInterval(updateTime, 1000);
