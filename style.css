@@ -1,182 +1,267 @@
 body {
   margin: 0;
-  font-family: sans-serif;
-  background: #f5f7fa;
+  min-height: 100vh;
+  font-family: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: #eef3f8;
+  color: #1f2937;
 }
 
-/* ===== ヘッダー ===== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== �w�b�_�[ ===== */
 .header {
-  background: linear-gradient(to right, #0f2a44, #1c3f6e);
+  background: #1e3a8a;
   color: white;
   display: flex;
   justify-content: space-between;
-  padding: 12px;
   align-items: center;
+  padding: 18px 20px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
-/* 時刻エリア */
+/* �����G���A */
 .time-area {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .clock-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
   font-size: 18px;
 }
 
 #time {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .date {
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 0.95rem;
+  opacity: 0.88;
 }
 
-/* 更新ボタン */
 .refresh {
-  background: white;
+  background: rgba(255, 255, 255, 0.18);
   border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 18px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-/* ===== タブ ===== */
+.refresh:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ===== �^�u ===== */
 .tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  padding: 10px;
+  padding: 16px 20px;
 }
 
 .tab {
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: #ddd;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.tab.active { background: #3b82f6; color: white; }
-.tab.preparing { background: #f97316; color: white; }
-.tab.done { background: #22c55e; color: white; }
+.tab.active { background: #1e3a8a; color: white; }
+.tab.preparing { background: #93c5fd; color: #1e3a8a; }
+.tab.done { background: #bfdbfe; color: #1e3a8a; }
 
-/* ===== テーブル ===== */
+/* ===== �e�[�u�� ===== */
 table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 8px; /* 行ごとに余白 */
+  border-spacing: 0 16px;
+  margin: 0;
 }
 
-th {
-  background: #e5e7eb;
-  padding: 10px;
-  font-size: 14px;
+thead tr th {
+  background: #e2e8f0;
+  padding: 14px 12px;
+  font-size: 0.92rem;
   text-align: center;
+  color: #334155;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
-/* セル共通 */
+tbody tr {
+  box-shadow: 0 16px 38px rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
 td {
-  padding: 12px;
+  padding: 18px 14px;
   background: white;
-  border-right: 1px solid #e5e7eb;
+  border: none;
   vertical-align: middle;
 }
 
-/* 最後の列は線なし */
-td:last-child {
-  border-right: none;
+td:first-child {
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
 }
 
-/* 中央揃え列 */
+td:last-child {
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
 td:nth-child(1),
-td:nth-child(2),
-td:nth-child(4),
-td:nth-child(5),
-td:nth-child(7) {
+ td:nth-child(2),
+ td:nth-child(4),
+ td:nth-child(7) {
   text-align: center;
 }
 
-/* ===== 番号札 ===== */
+td:nth-child(5),
+ td:nth-child(6) {
+  text-align: left;
+}
+
 .call {
-  width: 70px;
-  height: 70px;
-  font-size: 32px;
-  font-weight: bold;
+  width: 72px;
+  height: 72px;
+  font-size: 30px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 18px;
   margin: auto;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
 }
 
 .white-tag {
-  background: white;
-  color: black;
-  border: 2px solid black;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
 }
 
 .black-tag {
-  background: black;
+  background: #0f172a;
   color: white;
 }
 
-/* ===== 車番（右揃え） ===== */
 .number-cell {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-}
-
-.area {
-  font-size: 14px;
-  color: #555;
-}
-
-.number {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* ===== 場所 ===== */
-.location {
-  font-weight: bold;
-  color: navy;
-  display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-.location-icon {
-  font-size: 16px;
-}
-
-/* ===== ステータス ===== */
-.status {
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-size: 14px;
+  justify-content: center;
+  gap: 8px;
   text-align: center;
 }
 
-.preparing {
-  background: #fff7ed;
-  color: #ea580c;
-  border: 1px solid #fb923c;
-}
-
-.ready {
-  background: #ecfdf5;
-  color: #16a34a;
-  border: 1px solid #4ade80;
-}
-
-.done {
-  background: #f1f5f9;
+.area {
+  font-size: 0.88rem;
   color: #475569;
+}
+
+.number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.class-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: rgba(59, 130, 246, 0.12);
+  color: #1e40af;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.car-type {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.info-list {
+  list-style: disc inside;
+  margin: 0;
+  padding: 0;
+  color: #334155;
+}
+
+.info-list li {
+  margin: 7px 0;
+  line-height: 1.55;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.icon-svg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  background: rgba(59, 130, 246, 0.14);
+}
+
+.status.preparing,
+.status.ready,
+.status.done {
+  color: #1e3a8a;
+  background: rgba(59, 130, 246, 0.14);
 }

@@ -13,8 +13,8 @@ function render() {
       </td>
       <td>${car.time}</td>
       <td>
-        <div>${car.class}</div>
-        <div><b>${car.carType}</b></div>
+        <div class="class-badge">${car.class}</div>
+        <div class="car-type"><b>${car.carType}</b></div>
       </td>
       <td>
         <div class="number-cell">
@@ -22,11 +22,20 @@ function render() {
           <div class="number">${car.number}</div>
         </div>
       </td>
-      <td>${car.options.join("<br>")}</td>
+      <td>
+        <ul class="info-list">
+          ${car.options.map(option => `<li>${option}</li>`).join("")}
+        </ul>
+      </td>
       <td>
         <div class="location">
-          <span class="location-icon">📍</span>
-          ${car.location}
+          <span class="location-icon icon-svg" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 0 1 18 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </span>
+          <span>${car.location}</span>
         </div>
       </td>
       <td>
