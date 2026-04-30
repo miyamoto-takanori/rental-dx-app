@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #f5f5f5;
+  background: #f0f2f5;
 }
 
 /* 全体 */
@@ -13,6 +13,7 @@ body {
 h1 {
   text-align: center;
   margin: 5px;
+  font-size: 24px;
 }
 
 /* セクション */
@@ -22,43 +23,64 @@ h1 {
 
 .section h2 {
   margin: 5px;
+  font-size: 20px;
 }
 
-/* 上：受付中（最大4） */
+/* 🔥 受付中（目立たせる） */
 #active {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 12px;
+  background: #fff3cd;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-/* 下：受付済（最大11） */
+/* 受付済 */
 #done {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 8px;
 }
 
-/* カード */
+/* カード共通 */
 .card {
-  background: white;
   border-radius: 12px;
   padding: 10px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: white;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+/* 押した時 */
+.card:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 🔥 受付中カード */
+.active-card {
+  border: 3px solid #ff9800;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* 受付済カード */
+.done-card {
+  opacity: 0.85;
 }
 
 /* 番号札 */
 .call {
-  font-size: 56px;
+  font-size: 64px;
   font-weight: bold;
-  padding: 5px;
+  padding: 6px;
   border-radius: 8px;
   margin-bottom: 5px;
 }
 
-/* 車番（最重要） */
+/* 車番 */
 .number {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: bold;
 }
 
@@ -70,10 +92,10 @@ h1 {
 /* 保管場所 */
 .loc {
   font-size: 16px;
-  color: gray;
+  color: #555;
 }
 
-/* 白黒番号札 */
+/* 白黒 */
 .white-tag {
   background: white;
   color: black;

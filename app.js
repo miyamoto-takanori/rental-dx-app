@@ -5,19 +5,20 @@ function render() {
   activeEl.innerHTML = "";
   doneEl.innerHTML = "";
 
-  // 並び順（ID順）
   cars.sort((a, b) => a.id - b.id);
 
   const activeCars = cars.filter(c => c.status === "active").slice(0, 4);
   const doneCars = cars.filter(c => c.status === "done").slice(0, 11);
 
-  activeCars.forEach(createCard);
-  doneCars.forEach(createCard);
+  activeCars.forEach(car => createCard(car, true));
+  doneCars.forEach(car => createCard(car, false));
 }
 
-function createCard(car) {
+function createCard(car, isActive) {
   const card = document.createElement("div");
   card.className = "card";
+
+  card.classList.add(isActive ? "active-card" : "done-card");
 
   const tagClass = car.isInbound ? "black-tag" : "white-tag";
 
@@ -28,20 +29,26 @@ function createCard(car) {
     <div class="loc">${car.location}</div>
   `;
 
-  // 長押しで「案内完了」
   let timer;
 
-  card.addEventListener("mousedown", () => {
+  const startPress = () => {
     timer = setTimeout(() => {
       car.status = "done";
       render();
     }, 800);
-  });
+  };
 
-  card.addEventListener("mouseup", () => clearTimeout(timer));
-  card.addEventListener("mouseleave", () => clearTimeout(timer));
+  const cancelPress = () => clearTimeout(timer);
 
-  // どこに追加するか
+  // PC
+  card.addEventListener("mousedown", startPress);
+  card.addEventListener("mouseup", cancelPress);
+  card.addEventListener("mouseleave", cancelPress);
+
+  // iPad / スマホ
+  card.addEventListener("touchstart", startPress);
+  card.addEventListener("touchend", cancelPress);
+
   if (car.status === "active") {
     activeEl.appendChild(card);
   } else {
