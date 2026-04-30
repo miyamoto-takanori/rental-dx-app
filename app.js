@@ -17,8 +17,7 @@ function render() {
 function createCard(car, isActive) {
   const card = document.createElement("div");
   card.className = "card";
-
-  card.classList.add(isActive ? "active-card" : "done-card");
+  if (isActive) card.classList.add("active-card");
 
   const tagClass = car.isInbound ? "black-tag" : "white-tag";
 
@@ -26,28 +25,24 @@ function createCard(car, isActive) {
     <div class="call ${tagClass}">${car.callNumber}</div>
     <div class="number">${car.carNumber}</div>
     <div class="type">${car.carType}</div>
-    <div class="loc">${car.location}</div>
   `;
 
   let timer;
 
-  const startPress = () => {
+  const start = () => {
     timer = setTimeout(() => {
       car.status = "done";
       render();
     }, 800);
   };
 
-  const cancelPress = () => clearTimeout(timer);
+  const cancel = () => clearTimeout(timer);
 
-  // PC
-  card.addEventListener("mousedown", startPress);
-  card.addEventListener("mouseup", cancelPress);
-  card.addEventListener("mouseleave", cancelPress);
-
-  // iPad / スマホ
-  card.addEventListener("touchstart", startPress);
-  card.addEventListener("touchend", cancelPress);
+  card.addEventListener("mousedown", start);
+  card.addEventListener("mouseup", cancel);
+  card.addEventListener("mouseleave", cancel);
+  card.addEventListener("touchstart", start);
+  card.addEventListener("touchend", cancel);
 
   if (car.status === "active") {
     activeEl.appendChild(card);

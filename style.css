@@ -1,108 +1,98 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #f0f2f5;
+  background: #111;
+  color: white;
 }
 
 /* 全体 */
-.container {
-  padding: 10px;
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* タイトル */
-h1 {
-  text-align: center;
-  margin: 5px;
-  font-size: 24px;
+/* ゾーン */
+.zone {
+  padding: 8px;
 }
 
-/* セクション */
-.section {
-  margin-bottom: 15px;
+.zone-title {
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 
-.section h2 {
-  margin: 5px;
-  font-size: 20px;
+/* 上：受付中 */
+.active-zone {
+  flex: 1;
+  background: #222;
 }
 
-/* 🔥 受付中（目立たせる） */
-#active {
+/* 下：受付済 */
+.done-zone {
+  flex: 2;
+  background: #000;
+}
+
+/* グリッド */
+.grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  background: #fff3cd;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-/* 受付済 */
-#done {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 
-/* カード共通 */
+.active-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.done-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* カード */
 .card {
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 8px;
   text-align: center;
-  background: white;
-  transition: transform 0.1s, box-shadow 0.1s;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* 押した時 */
-.card:active {
-  transform: scale(0.97);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* 🔥 受付中カード */
+/* 受付中強調 */
 .active-card {
   border: 3px solid #ff9800;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* 受付済カード */
-.done-card {
-  opacity: 0.85;
+  background: #2a2a2a;
 }
 
 /* 番号札 */
 .call {
   font-size: 64px;
   font-weight: bold;
-  padding: 6px;
-  border-radius: 8px;
-  margin-bottom: 5px;
+  border-radius: 6px;
+  margin-bottom: 4px;
 }
 
-/* 車番 */
+/* 車番（最重要） */
 .number {
   font-size: 40px;
   font-weight: bold;
 }
 
-/* 車種 */
+/* 車種（控えめ） */
 .type {
-  font-size: 18px;
-}
-
-/* 保管場所 */
-.loc {
   font-size: 16px;
-  color: #555;
+  opacity: 0.8;
 }
 
 /* 白黒 */
 .white-tag {
   background: white;
   color: black;
-  border: 3px solid black;
 }
 
 .black-tag {
   background: black;
   color: white;
+  border: 2px solid white;
 }

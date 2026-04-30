@@ -8,21 +8,23 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1>出発待ち一覧</h1>
+<div class="wrapper">
 
-    <div class="section">
-      <h2>受付中</h2>
-      <div id="active"></div>
-    </div>
-
-    <div class="section">
-      <h2>受付済</h2>
-      <div id="done"></div>
-    </div>
+  <!-- 上：受付中 -->
+  <div class="zone active-zone">
+    <div class="zone-title">受付中</div>
+    <div id="active" class="grid active-grid"></div>
   </div>
 
-  <script src="data/mockData.js"></script>
-  <script src="app.js"></script>
+  <!-- 下：受付済 -->
+  <div class="zone done-zone">
+    <div class="zone-title">受付済</div>
+    <div id="done" class="grid done-grid"></div>
+  </div>
+
+</div>
+
+<script src="data/mockData.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
