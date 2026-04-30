@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>出発管理</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>出発準備一覧</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="wrapper">
+<header class="header">
+  <div class="title">出発準備一覧（外回り）</div>
+  <div class="time" id="time"></div>
+  <button class="refresh" onclick="render()">更新</button>
+</header>
 
-  <!-- 上：受付中 -->
-  <div class="zone active-zone">
-    <div class="zone-title">受付中</div>
-    <div id="active" class="grid active-grid"></div>
-  </div>
-
-  <!-- 下：受付済 -->
-  <div class="zone done-zone">
-    <div class="zone-title">受付済</div>
-    <div id="done" class="grid done-grid"></div>
-  </div>
-
+<div class="tabs">
+  <span class="tab active">すべて</span>
+  <span class="tab">受付済</span>
+  <span class="tab preparing">準備中</span>
+  <span class="tab done">準備完了</span>
 </div>
+
+<table>
+  <thead>
+    <tr>
+      <th>呼出</th>
+      <th>出発</th>
+      <th>車種</th>
+      <th>車番</th>
+      <th>情報</th>
+      <th>場所</th>
+      <th>状態</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
 
 <script src="data/mockData.js"></script>
 <script src="app.js"></script>

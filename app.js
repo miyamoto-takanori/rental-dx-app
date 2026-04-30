@@ -1,54 +1,44 @@
-const activeEl = document.getElementById("active");
-const doneEl = document.getElementById("done");
-
 function render() {
-  activeEl.innerHTML = "";
-  doneEl.innerHTML = "";
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "";
 
-  cars.sort((a, b) => a.id - b.id);
+  cars.forEach(car => {
+    const tr = document.createElement("tr");
 
-  const activeCars = cars.filter(c => c.status === "active").slice(0, 4);
-  const doneCars = cars.filter(c => c.status === "done").slice(0, 11);
+    const tagClass = car.inbound ? "black-tag" : "white-tag";
 
-  activeCars.forEach(car => createCard(car, true));
-  doneCars.forEach(car => createCard(car, false));
+    tr.innerHTML = `
+      <td>
+        <div class="call ${tagClass}">${car.call}</div>
+      </td>
+      <td>${car.time}</td>
+      <td>
+        <div>${car.class}</div>
+        <div><b>${car.carType}</b></div>
+      </td>
+      <td class="number">${car.number}</td>
+      <td>${car.options.join(", ")}</td>
+      <td>${car.location}</td>
+      <td><div class="status ${car.status}">${label(car.status)}</div></td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+
+  updateTime();
 }
 
-function createCard(car, isActive) {
-  const card = document.createElement("div");
-  card.className = "card";
-  if (isActive) card.classList.add("active-card");
+function label(status) {
+  if (status === "preparing") return "準備中";
+  if (status === "ready") return "準備完了";
+  return "受付済";
+}
 
-  const tagClass = car.isInbound ? "black-tag" : "white-tag";
-
-  card.innerHTML = `
-    <div class="call ${tagClass}">${car.callNumber}</div>
-    <div class="number">${car.carNumber}</div>
-    <div class="type">${car.carType}</div>
-  `;
-
-  let timer;
-
-  const start = () => {
-    timer = setTimeout(() => {
-      car.status = "done";
-      render();
-    }, 800);
-  };
-
-  const cancel = () => clearTimeout(timer);
-
-  card.addEventListener("mousedown", start);
-  card.addEventListener("mouseup", cancel);
-  card.addEventListener("mouseleave", cancel);
-  card.addEventListener("touchstart", start);
-  card.addEventListener("touchend", cancel);
-
-  if (car.status === "active") {
-    activeEl.appendChild(card);
-  } else {
-    doneEl.appendChild(card);
-  }
+function updateTime() {
+  const now = new Date();
+  document.getElementById("time").innerText =
+    now.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" });
 }
 
 render();
+setInterval(updateTime, 60000);

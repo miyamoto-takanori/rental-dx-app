@@ -1,98 +1,119 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #111;
+  background: #f5f7fa;
+}
+
+/* ヘッダー */
+.header {
+  background: linear-gradient(to right, #0f2a44, #1c3f6e);
   color: white;
-}
-
-/* 全体 */
-.wrapper {
-  height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  align-items: center;
 }
 
-/* ゾーン */
-.zone {
-  padding: 8px;
+.title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.zone-title {
+.time {
   font-size: 18px;
-  margin-bottom: 6px;
 }
 
-/* 上：受付中 */
-.active-zone {
-  flex: 1;
-  background: #222;
+.refresh {
+  background: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
 }
 
-/* 下：受付済 */
-.done-zone {
-  flex: 2;
-  background: #000;
-}
-
-/* グリッド */
-.grid {
-  display: grid;
-  gap: 8px;
-}
-
-.active-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.done-grid {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-/* カード */
-.card {
-  border-radius: 10px;
-  padding: 8px;
-  text-align: center;
-  background: #1a1a1a;
+/* タブ */
+.tabs {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  gap: 10px;
+  padding: 10px;
 }
 
-/* 受付中強調 */
-.active-card {
-  border: 3px solid #ff9800;
-  background: #2a2a2a;
+.tab {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #ddd;
+}
+
+.tab.active { background: #3b82f6; color: white; }
+.tab.preparing { background: #f97316; color: white; }
+.tab.done { background: #22c55e; color: white; }
+
+/* テーブル */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #e5e7eb;
+  padding: 10px;
+  font-size: 14px;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
 }
 
 /* 番号札 */
 .call {
-  font-size: 64px;
+  width: 70px;
+  height: 70px;
+  font-size: 32px;
   font-weight: bold;
-  border-radius: 6px;
-  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }
 
-/* 車番（最重要） */
-.number {
-  font-size: 40px;
-  font-weight: bold;
-}
-
-/* 車種（控えめ） */
-.type {
-  font-size: 16px;
-  opacity: 0.8;
-}
-
-/* 白黒 */
 .white-tag {
   background: white;
   color: black;
+  border: 2px solid black;
 }
 
 .black-tag {
   background: black;
   color: white;
-  border: 2px solid white;
+}
+
+/* 車番 */
+.number {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ステータス */
+.status {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.preparing {
+  background: #fff7ed;
+  color: #ea580c;
+  border: 1px solid #fb923c;
+}
+
+.ready {
+  background: #ecfdf5;
+  color: #16a34a;
+  border: 1px solid #4ade80;
+}
+
+.done {
+  background: #f1f5f9;
+  color: #475569;
 }
