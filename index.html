@@ -10,8 +10,16 @@
 
 <header class="header">
   <div class="title">出発準備一覧（外回り）</div>
-  <div class="time" id="time"></div>
-  <button class="refresh" onclick="render()">更新</button>
+
+  <div class="time-area">
+    <span class="clock-icon">🕒</span>
+    <span id="time"></span>
+    <span class="date" id="date"></span>
+  </div>
+
+  <button class="refresh" onclick="render()">
+    🔄
+  </button>
 </header>
 
 <div class="tabs">

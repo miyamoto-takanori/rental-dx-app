@@ -4,7 +4,7 @@ body {
   background: #f5f7fa;
 }
 
-/* ヘッダー */
+/* ===== ヘッダー ===== */
 .header {
   background: linear-gradient(to right, #0f2a44, #1c3f6e);
   color: white;
@@ -19,18 +19,37 @@ body {
   font-weight: bold;
 }
 
-.time {
+/* 時刻エリア */
+.time-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.clock-icon {
   font-size: 18px;
 }
 
+#time {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* 更新ボタン */
 .refresh {
   background: white;
   border: none;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 6px;
+  font-size: 18px;
 }
 
-/* タブ */
+/* ===== タブ ===== */
 .tabs {
   display: flex;
   gap: 10px;
@@ -47,24 +66,43 @@ body {
 .tab.preparing { background: #f97316; color: white; }
 .tab.done { background: #22c55e; color: white; }
 
-/* テーブル */
+/* ===== テーブル ===== */
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* 行ごとに余白 */
 }
 
 th {
   background: #e5e7eb;
   padding: 10px;
   font-size: 14px;
+  text-align: center;
 }
 
+/* セル共通 */
 td {
   padding: 12px;
-  border-bottom: 1px solid #ddd;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  vertical-align: middle;
 }
 
-/* 番号札 */
+/* 最後の列は線なし */
+td:last-child {
+  border-right: none;
+}
+
+/* 中央揃え列 */
+td:nth-child(1),
+td:nth-child(2),
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(7) {
+  text-align: center;
+}
+
+/* ===== 番号札 ===== */
 .call {
   width: 70px;
   height: 70px;
@@ -74,6 +112,7 @@ td {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  margin: auto;
 }
 
 .white-tag {
@@ -87,13 +126,37 @@ td {
   color: white;
 }
 
-/* 車番 */
+/* ===== 車番（右揃え） ===== */
+.number-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.area {
+  font-size: 14px;
+  color: #555;
+}
+
 .number {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
 }
 
-/* ステータス */
+/* ===== 場所 ===== */
+.location {
+  font-weight: bold;
+  color: navy;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.location-icon {
+  font-size: 16px;
+}
+
+/* ===== ステータス ===== */
 .status {
   padding: 6px 10px;
   border-radius: 8px;

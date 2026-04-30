@@ -16,10 +16,24 @@ function render() {
         <div>${car.class}</div>
         <div><b>${car.carType}</b></div>
       </td>
-      <td class="number">${car.number}</td>
-      <td>${car.options.join(", ")}</td>
-      <td>${car.location}</td>
-      <td><div class="status ${car.status}">${label(car.status)}</div></td>
+      <td>
+        <div class="number-cell">
+          <div class="area">${car.area}</div>
+          <div class="number">${car.number}</div>
+        </div>
+      </td>
+      <td>${car.options.join("<br>")}</td>
+      <td>
+        <div class="location">
+          <span class="location-icon">📍</span>
+          ${car.location}
+        </div>
+      </td>
+      <td>
+        <div class="status ${car.status}">
+          ${label(car.status)}
+        </div>
+      </td>
     `;
 
     tbody.appendChild(tr);
@@ -36,8 +50,12 @@ function label(status) {
 
 function updateTime() {
   const now = new Date();
+
   document.getElementById("time").innerText =
     now.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" });
+
+  document.getElementById("date").innerText =
+    now.toLocaleDateString("ja-JP", { month: "numeric", day: "numeric", weekday: "short" });
 }
 
 render();
